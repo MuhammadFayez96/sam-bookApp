@@ -34,7 +34,7 @@
 
 
 <footer class="container">
-    &copy; All Right Reserved For Hamada :p
+    &copy; All Right Reserved For Samar :p
 </footer>
 
 </body>
