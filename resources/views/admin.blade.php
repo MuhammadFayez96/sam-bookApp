@@ -39,7 +39,7 @@
                             <!--     ........................ Updating a Section ....................   -->
 
                             {!! Form::open(["url" => "admin/update/sections/" , "method" =>"post"]) !!}
-                           {{-- <input type="hidden" value="{{$section->id}}">   --}}
+                            <input type="hidden" value="{{$section->id}}">
                             <td>{!! Form::text("section_name" , $section->section_name) !!}</td>
                             <td>
                                 <span class="label label-default">{{$section->books_total}}</span>
@@ -55,7 +55,7 @@
                             @if($section->trashed())
                                 <td>
                                 {!! Form::open(["url" => "admin/delete-forever/" , "method" =>"post"]) !!}
-                                 {{-- <input type="hidden" value="{{$section_id}}">  --}}
+                                  <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Delete forever!!" , ["class" =>"btn btn-danger"]) !!} </td>
                                 {!! Form::close() !!}
                                 </td>
@@ -63,7 +63,7 @@
                             @else
                                 <td>
                                 {!! Form::open(["url" => "admin/delete/sections/" , "method" =>"post"]) !!}
-                             {{--   <input type="hidden" value="{{$section_id}}">  --}}
+                                <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
                                 {!! Form::close() !!}
                                 </td>
@@ -72,7 +72,7 @@
                             @if($section->trashed())
                                 <td>
                                 {!! Form::open(["url" => "admin/restore/" , "method" =>"post"]) !!}
-                              {{--  <input type="hidden" value="{{$section_id}}">    --}}
+                                <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Restore" , ["class" =>"btn btn-default"]) !!} </td>
                                 {!! Form::close() !!}
                                 </td>
