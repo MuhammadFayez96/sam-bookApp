@@ -54,7 +54,7 @@
 
                             @if($section->trashed())
                                 <td>
-                                {!! Form::open(["url" => "admin/delete-forever/" , "method" =>"post"]) !!}
+                                {!! Form::open(["url" => "admin/delete-forever/".$section->id , "method" =>"post"]) !!}
                                   <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Delete forever!!" , ["class" =>"btn btn-danger"]) !!} </td>
                                 {!! Form::close() !!}
@@ -62,16 +62,20 @@
 
                             @else
                                 <td>
-                                {!! Form::open(["url" => "admin/delete/sections/" , "method" =>"post"]) !!}
+                                {!! Form::open(["url" => "admin/delete/sections/".$section->id , "method" =>"post"]) !!}
                                 <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
                                 {!! Form::close() !!}
+                                </td>
+
+                                <td>
+                                    <a href="admin/{{$section->id}}" class="btn btn-default">Show</a>
                                 </td>
                             @endif
 
                             @if($section->trashed())
                                 <td>
-                                {!! Form::open(["url" => "admin/restore/" , "method" =>"post"]) !!}
+                                {!! Form::open(["url" => "admin/restore/" .$section->id, "method" =>"post"]) !!}
                                 <input type="hidden" value="{{$section->id}}">
                                 <td> {!! Form::submit("Restore" , ["class" =>"btn btn-default"]) !!} </td>
                                 {!! Form::close() !!}

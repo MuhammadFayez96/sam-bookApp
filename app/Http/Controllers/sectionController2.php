@@ -50,7 +50,14 @@ class sectionController2 extends Controller
 
     public function show($id)
     {
-        //
+        $date = date('Y-m-d');
+        $time = time('H:i:s');
+        $section =Section::find($id);
+        $all_books = DB::table('sections')
+            ->join('books', "sections.id" ,'=' , 'books.section_id')
+            ->where('sections.id',$id)
+            ->get();
+        return view('libraryViewsContainer.books',compact('section' , $section , 'all_books' , $all_books),[ 'date' => $date , 'time' => $time  ]);
     }
 
     public function edit($id)

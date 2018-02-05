@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('public/css/bootstrap.min.css')}}">
     <style type="text/css">
         body{
-            background: url("{{asset('public/images/library.jpg')}}") no-repeat center center fixed;
+        {{--  background: url("{{asset('public/images/library.jpg')}}") no-repeat center center fixed; --}}
             background-size: 100% auto;
         }
         header{opacity: .7;}
@@ -34,7 +34,7 @@
 
 
 <footer class="container">
-    &copy; All Right Reserved For Hamada :p
+    &copy; All Right Reserved For samar :)
 </footer>
 
 </body>
