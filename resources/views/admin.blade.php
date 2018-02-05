@@ -27,14 +27,19 @@
                         <th><h3>Delete</h3></th>
                     </tr>
                     @foreach($sections as $section )
+                        @if($section->trashed())
+                            <tr style="background-color: #ca2125"></tr>
+                        @else
+                            <tr style="background-color: #fff"></tr>
+                        @endif
 
                         <tr>
 
 
                             <!--     ........................ Updating a Section ....................   -->
 
-                            {!! Form::open(["url" => "admin/update/sections/" . $section->id , "method" =>"post"]) !!}
-                            <input type="hidden" value="{{$section->id}}">
+                            {!! Form::open(["url" => "admin/update/sections/" , "method" =>"post"]) !!}
+                           {{-- <input type="hidden" value="{{$section->id}}">   --}}
                             <td>{!! Form::text("section_name" , $section->section_name) !!}</td>
                             <td>
                                 <span class="label label-default">{{$section->books_total}}</span>
@@ -47,14 +52,32 @@
 
                         <!--     ........................ Deleting a Section ....................   -->
 
-                            <td>
+                            @if($section->trashed())
+                                <td>
+                                {!! Form::open(["url" => "admin/delete-forever/" , "method" =>"post"]) !!}
+                                 {{-- <input type="hidden" value="{{$section_id}}">  --}}
+                                <td> {!! Form::submit("Delete forever!!" , ["class" =>"btn btn-danger"]) !!} </td>
+                                {!! Form::close() !!}
+                                </td>
 
+                            @else
+                                <td>
+                                {!! Form::open(["url" => "admin/delete/sections/" , "method" =>"post"]) !!}
+                             {{--   <input type="hidden" value="{{$section_id}}">  --}}
+                                <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
+                                {!! Form::close() !!}
+                                </td>
+                            @endif
 
-                                {!! Form::open(["url" => "admin/delete/sections/" . $section->id , "method" =>"post"]) !!}
-                                <input type="hidden" value="{{$section->id}}">
-                            <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
-                            {!! Form::close() !!}
-                            </td>
+                            @if($section->trashed())
+                                <td>
+                                {!! Form::open(["url" => "admin/restore/" , "method" =>"post"]) !!}
+                              {{--  <input type="hidden" value="{{$section_id}}">    --}}
+                                <td> {!! Form::submit("Restore" , ["class" =>"btn btn-default"]) !!} </td>
+                                {!! Form::close() !!}
+                                </td>
+                            @endif
+
                         </tr>
 
                     @endforeach

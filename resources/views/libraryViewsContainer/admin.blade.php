@@ -35,9 +35,14 @@
                <th><h3>Update</h3></th>
                <th><h3>Delete</h3></th>
            </tr>
-           @foreach($sections as $section )
+            @foreach($sections as $section )
+                @if($section->trashed())
+                    <tr style="background-color: #ca2125"></tr>
+                @else
+                    <tr style="background-color: #fff"></tr>
+                @endif
 
-           <tr>
+                <tr>
 
 
 
@@ -73,11 +78,33 @@
                        <img src="{{asset('public/images/delete.png')}}" width="25px" height="25px" onclick="submit()">
                    </form>  --}}
 
-               {!! Form::open(["url" => "admin/delete/sections/".$section->id  , "method" =>"post"]) !!}
-               <input type="hidden" value="{{$section_id}}">
-               <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
-               {!! Form::close() !!}
-               </td>
+                  <!--     ........................ Deleting a Section ....................   -->
+
+               @if($section->trashed())
+                   <td>
+                       {!! Form::open(["url" => "admin/delete-forever/".$section->id  , "method" =>"post"]) !!}
+                       <input type="hidden" value="{{$section_id}}">
+                   <td> {!! Form::submit("Delete forever!!" , ["class" =>"btn btn-danger"]) !!} </td>
+                   {!! Form::close() !!}
+                   </td>
+
+               @else
+                   <td>
+                       {!! Form::open(["url" => "admin/delete/sections/".$section->id  , "method" =>"post"]) !!}
+                       <input type="hidden" value="{{$section_id}}">
+                   <td> {!! Form::submit("Delete" , ["class" =>"btn btn-danger"]) !!} </td>
+                   {!! Form::close() !!}
+                   </td>
+               @endif
+
+               @if($section->trashed())
+                   <td>
+                       {!! Form::open(["url" => "admin/restore/".$section->id , "method" =>"post"]) !!}
+                       <input type="hidden" value="{{$section_id}}">
+                   <td> {!! Form::submit("Restore" , ["class" =>"btn btn-default"]) !!} </td>
+                   {!! Form::close() !!}
+                   </td>
+               @endif
 
            </tr>
 

@@ -6,7 +6,7 @@
         @foreach($sections as $section)
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="public/images/{{$section->image_name}}">
+                    <img src="public/images/{{$section->image_name}}" width="150" height="280">
                     <h1><a class="btn btn-primary">{{$section->section_name}}</a> </h1>
                 </div>
             </div>

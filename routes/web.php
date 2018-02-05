@@ -28,7 +28,8 @@ Route::resource('library','sectionController2');
 Route::get('admin','sectionController2@admin');
 Route::post('admin/update/sections/{id}','sectionController2@update');
 Route::post('admin/delete/sections/{id}','sectionController2@destroy');
-
+Route::post('admin/restore/{id}','sectionController2@restore');
+Route::post('admin/delete-forever/{id}','sectionController2@deleteForever');
 
 
 

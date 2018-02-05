@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Section ;
 
 class sectionController2 extends Controller
@@ -81,7 +81,18 @@ class sectionController2 extends Controller
         $date = date('Y-m-d');
         $time = time('H:i:s');
        // $sections =DB::table('sections')->get();
-        $sections = Section::get();
+        $sections = Section::withTrashed()->get();
         return view('admin' , ['sections' => $sections , 'date' => $date , 'time' => $time  ]);
+    }
+
+    public function restore($id){
+        $section =Section::onlyTrashed()->find($id);
+        $section->restore();
+        return redirect('admin');
+    }
+    public function deleteForever($id){
+        $section =Section::onlyTrashed()->find($id);
+        $section->forceDelete();
+        return redirect('admin');
     }
 }
