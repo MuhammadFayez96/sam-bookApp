@@ -38,7 +38,7 @@
 
                             <!--     ........................ Updating a Section ....................   -->
 
-                            {!! Form::open(["url" => "admin/update/sections/" , "method" =>"post"]) !!}
+                            {!! Form::open(["url" => "admin/update/sections/".$section->id , "method" =>"post"]) !!}
                             <input type="hidden" value="{{$section->id}}">
                             <td>{!! Form::text("section_name" , $section->section_name) !!}</td>
                             <td>
