@@ -29,6 +29,7 @@
                             <a href="/authors/{{$author->id}}">
                                 <span class="label label-danger">{{$author->first_name}} {{$author->last_name}}</span>
                             </a>
+                        @endforeach
                     </td>
                 </tr>
             @endforeach
@@ -37,4 +38,4 @@
 
 
     </div>
-@stop
+@endsect
