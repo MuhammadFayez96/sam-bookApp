@@ -53,11 +53,30 @@ class sectionController2 extends Controller
         $date = date('Y-m-d');
         $time = time('H:i:s');
         $section =Section::find($id);
-        $all_books = DB::table('sections')
-            ->join('books', "sections.id" ,'=' , 'books.section_id')
-            ->where('sections.id',$id)
-            ->get();
-        return view('libraryViewsContainer.books',compact('section' , $section , 'all_books' , $all_books),[ 'date' => $date , 'time' => $time  ]);
+       // $all_books = DB::table('sections')
+       //     ->join('books', "sections.id" ,'=' , 'books.section_id')
+       //     ->where('sections.id',$id)
+       //     ->get();
+        $all_books = $section->books;
+        $array_of_authors =[];
+        $i = 0;
+
+        foreach ($all_books as $book) {
+            $array_of_authors = array_add($array_of_authors, $i,
+             //   DB::table("books")
+             //       ->join("books_authors_relationship", "books.id", "=", "books_authors_relationship.book_id")
+             //       ->join("authors", "books_authors_relationship.author_id", "=", "authors.id")
+             //       ->where("books.id", $book->id)
+             //       ->select("authors.first_name","authors.id")
+             //       ->get()
+
+            $book->authors()->select("authors.first_name","authors.id")->get()
+            );
+
+            $i++;
+        }
+
+        return view('libraryViewsContainer.books',compact('section' , $section , 'all_books' , $all_books,'array_of_authors',$array_of_authors),[ 'date' => $date , 'time' => $time  ]);
     }
 
     public function edit($id)
