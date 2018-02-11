@@ -37,20 +37,8 @@ Route::post('books/delete/{id}','booksController@destroy');
 Route::get('summary','booksController@summary');
 
 
-Route::get('auth/login','Auth\LoginController@login');
+Route::get('auth/login','Auth\LoginController@showLoginForm');
 Route::post('auth/login','Auth\LoginController@login');
 Route::get('auth/logout','Auth\LoginController@logout');
 Route::get('auth/register','Auth\RegisterController@getRegister');
 Route::post('auth/register','Auth\RegisterController@postRegister');
-
-
-
-
-
-
-
-
-
-
-
-
