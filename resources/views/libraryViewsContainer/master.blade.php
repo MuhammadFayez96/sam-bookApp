@@ -25,10 +25,19 @@
         <a href="{{asset('admin')}}">Samar Area</a><br/>
         <a href="{{asset('summary')}}">Summary</a>
 
-
+</div>
     </div>
 
 </header>
+
+@if(Session::has('m'))
+    <div class="container">
+        <?php $a=[];    $a=session()->pull('m');  ?>
+        <div class="alert alert-{{$a[0]}}">
+            {{$a[1]}}
+        </div>
+    </div>
+@endif
 
 
 @yield('content')

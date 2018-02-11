@@ -8,6 +8,11 @@ use App\Section ;
 
 class sectionController2 extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $date = date('Y-m-d');
@@ -43,6 +48,8 @@ class sectionController2 extends Controller
         $new_section->image_name = $filename;
         $new_section->save();
 
+        session()->push('m','sucess');
+        session()->push('m','Section Created Successfully !!');
 
         return redirect('admin');
 
@@ -92,6 +99,8 @@ class sectionController2 extends Controller
         $section =Section::find($id);
         $section->section_name =$section_name;
         $section->save();
+        session()->push('m','sucess');
+        session()->push('m','Section Updated Successfully !!');
         return redirect('admin');
 
     }
@@ -100,6 +109,8 @@ class sectionController2 extends Controller
     {
         //DB::table('sections')->where('id',$id)->delete();
         Section::destroy($id);
+        session()->push('m','danger');
+        session()->push('m','Section deleted temporary !!');
         return redirect('admin');
     }
     public function admin(){
@@ -114,11 +125,15 @@ class sectionController2 extends Controller
     public function restore($id){
         $section =Section::onlyTrashed()->find($id);
         $section->restore();
+        session()->push('m','info');
+        session()->push('m','Section restored Successfully !!');
         return redirect('admin');
     }
     public function deleteForever($id){
         $section =Section::onlyTrashed()->find($id);
         $section->forceDelete();
+        session()->push('m','danger');
+        session()->push('m','Section deleted Successfully !!');
         return redirect('admin');
     }
 }

@@ -1,6 +1,5 @@
 @extends('master')
 @section('content')
-
     <div class="container" >
         <h1 class="well text-center">Library Summary</h1>
         <table class="table">

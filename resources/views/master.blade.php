@@ -22,6 +22,7 @@
         <div class="col-md-2"></div>
         Date : {{ $date }}  <br/>
         Time : {{ $time }}  <br/>
+        <a href="library">Home</a>
         <a href="{{asset('admin')}}">Samar Area</a><br/>
         <a href="{{asset('summary')}}">Summary</a>
 

@@ -7,9 +7,6 @@
            <div class="panel-body">
                <h2>Creating New Section</h2><hr/>
 
-
-
-
             {{--   <form action="library" method="post" enctype="multipart/form-data">
                    {!! csrf_field() !!}
                    Enter The Name Of The Section : <input type="text" name="section_name"/>  <br/>
