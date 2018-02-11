@@ -26,7 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/library';
-    // protected $loginPath = 'auth/login';
+    protected $loginPath = 'auth/login';
     protected $redirectAfterLogout = '/library';
 
     /**
